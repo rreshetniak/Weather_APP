@@ -83,7 +83,7 @@
                   alt="Wind direction"
                   id="wind-direction-icon"
                 />
-                <p class="direction" id="wind-direction-text">Ю</p>
+                <p class="direction" id="wind-direction-text">S</p>
               </div>
             </div>
             <div class="stat-item">
@@ -124,7 +124,7 @@
                     stroke-width="2"
                   />
                   <!--Пропишите class для солнца, если хотие сделать анимацию-->
-                  <circle cx="50" cy="40" r="10" fill="#EC6E4C" />
+                  <circle class="sun-sycle" cx="50" cy="40" r="10" fill="#EC6E4C" />
                   <path
                     d="M20 40 A90 90 0 0 1 180 40"
                     stroke="#EC6E4C"
@@ -313,7 +313,7 @@
               <p class="day">Sep 13</p>
               <img
                 src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt="Погода"
+                alt="Weather"
               />
               <div class="temp">
                 <p class="temp-day">17 °C</p>
@@ -323,7 +323,16 @@
           </div>
         </section>
       </main>
-
+      <button id="toTop">
+        <img src="./src/icons/icon-toTop.png" alt="To top button" />
+      </button>
+      <footer>
+        <a href="https://www.youtube.com/@user-web-garage" target="_blank">
+          <!--Уберите 2025, если будете год рендерить динамически-->
+          © 2026<span id="currentYear"></span> Weather forecast. All rights reserved.
+        </a>
+      </footer>
+    </div>
   </div>
   <script type="module" src="main.js"></script>
 </body>
