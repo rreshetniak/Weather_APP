@@ -1,4 +1,9 @@
-@layer global, component;
-@import url(./global.css); 
-@import url(./component.css); 
+@import url(./current.css); 
+@import url(./daily.css); 
+@import url(./footer.css); 
+@import url(./header.css); 
+@import url(./hourly.css); 
+@import url(./toTop.css); 
+@import url(./variables.css); 
+
 
