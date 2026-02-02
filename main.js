@@ -1,5 +1,6 @@
 import {initApp} from './init.js';
 
+initApp();
 // движение солнца в зависимости от времени
 
 // const svg = document.querySelector(".sun-disk");
