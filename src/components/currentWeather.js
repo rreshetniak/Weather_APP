@@ -1,6 +1,8 @@
 import { baseUrl } from "../api/apiKeyAndHost.js";
 import { updateWindDirection } from "../helpers/windParam.js";
 import { updateHumidityScale } from "../helpers/humidityParam.js";
+import { formatTime } from "../helpers/formatTime.js";
+import { calcDayLength } from "../helpers/calcDayLength.js";
 
 const currentCity = document.querySelector('.city');
 const currentTemp = document.querySelector('.temperature');
@@ -11,6 +13,9 @@ const currentWind = document.querySelector('.wind');
 const currentVisibility = document.querySelector('.visibility');
 const currentHumidity = document.querySelector('.humidity');
 const currentPressure = document.querySelector('.pressure');
+const sunriseItem = document.querySelector('.sunrise');
+const sunsetItem = document.querySelector('.sunset');
+const dayLength = document.querySelector('.day-length');
 
 export const renderCurrentWeather = (data, city) => {
   currentCity.textContent = city || "Unknown";
@@ -35,5 +40,14 @@ export const renderCurrentWeather = (data, city) => {
 
   const humidity = data.main?.humidity || 0;
   updateHumidityScale(humidity);
+
+  const { sunrise, sunset } = data.sys || {};
+
+  const { timezone } = data || {};
+
+  sunriseItem.textContent = sunrise ? formatTime(sunrise, timezone) : 'Unknown';
+  sunsetItem.textContent = sunset ? formatTime(sunset, timezone) : 'Unknown';
+
+  dayLength.textContent = `Day length: ${sunrise && sunset ? calcDayLength(sunrise, sunset) : "Unknown"}`
 } 
 
