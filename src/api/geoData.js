@@ -3,6 +3,7 @@ import { cityInput } from "../components/inputForm.js";
 import { showError } from "../components/error.js";  
 import { isLatinOnly } from "../helpers/checkLatin.js"; 
 import { replaceAbbreviation } from "../helpers/cityAbbreviation.js";
+import { saveCityToLocalStorage } from "../helpers/saveCityToLocalStorage.js" 
 
 export const getGeoData = async () => {
   let city = cityInput.value.trim();
@@ -15,9 +16,7 @@ export const getGeoData = async () => {
     return;
   }
 
-  // city = replaceAbbreviation(city) {
-
-  // }
+  city = replaceAbbreviation(city);
   
   try {
     const geoUrl = `${baseUrl}/geo/1.0/direct`;
@@ -35,6 +34,8 @@ export const getGeoData = async () => {
     }
 
     const {lat, lon} = geoData[0];
+
+    saveCityToLocalStorage(city); // Save the founded city to Local Storage
 
     console.log(lat, lon);
 
