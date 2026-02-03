@@ -1,0 +1,31 @@
+import { baseUrl, apiKey } from "./apiKeyAndHost.js"; 
+
+const fetchData = async (endpoint, lat, lon) => {
+  const url = new URL(`${baseUrl}/data/2.5/${endpoint}`);
+  const queryParams = new URLSearchParams({
+    lat,
+    lon,
+    appid: apiKey,
+    lang: 'en',
+    units: 'metric',
+  });
+
+  url.search = queryParams.toString();
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error ("It's not possible to downlod data about weather.")
+  }
+
+  return response.json()
+};
+
+export const getWeather = async (lat, lon) => {
+  return fetchData('weather', lat, lon);
+};
+export const getForecast = async (lat, lon) => {
+  return fetchData('forecast', lat, lon);
+};
+
+// current weather data
+// https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}

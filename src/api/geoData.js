@@ -4,6 +4,9 @@ import { showError } from "../components/error.js";
 import { isLatinOnly } from "../helpers/checkLatin.js"; 
 import { replaceAbbreviation } from "../helpers/cityAbbreviation.js";
 import { saveCityToLocalStorage } from "../helpers/saveCityToLocalStorage.js" 
+import { getWeather } from "./getWeatherAndForecast.js";
+import { getForecast } from "./getWeatherAndForecast.js";
+import { renderCurrentWeather } from "../components/currentWeather.js";
 
 export const getGeoData = async () => {
   let city = cityInput.value.trim();
@@ -36,6 +39,14 @@ export const getGeoData = async () => {
     const {lat, lon} = geoData[0];
 
     saveCityToLocalStorage(city); // Save the founded city to Local Storage
+
+    const weatherData = await getWeather(lat, lon);
+    const forecastData = await getForecast(lat, lon);
+
+    console.log(weatherData);
+    console.log(forecastData);
+
+    renderCurrentWeather (weatherData, city);
 
     console.log(lat, lon);
 
