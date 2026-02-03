@@ -3,6 +3,8 @@ import { updateWindDirection } from "../helpers/windParam.js";
 import { updateHumidityScale } from "../helpers/humidityParam.js";
 import { formatTime } from "../helpers/formatTime.js";
 import { calcDayLength } from "../helpers/calcDayLength.js";
+import { calcSunPosition } from "../helpers/calcSunPosition.js";  
+import { updateSunPosition } from "../helpers/calcSunPosition.js";  
 
 const currentCity = document.querySelector('.city');
 const currentTemp = document.querySelector('.temperature');
@@ -49,5 +51,8 @@ export const renderCurrentWeather = (data, city) => {
   sunsetItem.textContent = sunset ? formatTime(sunset, timezone) : 'Unknown';
 
   dayLength.textContent = `Day length: ${sunrise && sunset ? calcDayLength(sunrise, sunset) : "Unknown"}`
+
+  const sunPosition = sunrise && sunset ? calcSunPosition(sunrise, sunset) : 0;
+  updateSunPosition(sunPosition);
 } 
 
