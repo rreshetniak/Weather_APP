@@ -1,17 +1,23 @@
 import { apiKey, baseUrl } from "./apiKeyAndHost.js";
-
-const searchForm = document.querySelector('.search-form');
-const cityInput = document.querySelector('.city-input');
-
-searchForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
-  getGeoData();
-});
+import { cityInput } from "../components/inputForm.js";
+import { showError } from "../components/error.js";  
+import { isLatinOnly } from "../helpers/checkLatin.js"; 
+import { replaceAbbreviation } from "../helpers/cityAbbreviation.js";
 
 export const getGeoData = async () => {
-  const city = cityInput.value.trim();
+  let city = cityInput.value.trim();
 
-  if (!city) return;
+  if (!city) {
+    return;
+  }
+  if (!isLatinOnly(city)) {
+    showError('Check the cities Name');
+    return;
+  }
+
+  // city = replaceAbbreviation(city) {
+
+  // }
   
   try {
     const geoUrl = `${baseUrl}/geo/1.0/direct`;
@@ -34,5 +40,6 @@ export const getGeoData = async () => {
 
   } catch (error) {
     console.error(error.message);
+    showError("Data didn't get");
   }
 }
