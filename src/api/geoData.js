@@ -7,6 +7,7 @@ import { saveCityToLocalStorage } from "../helpers/saveCityToLocalStorage.js"
 import { getWeather } from "./getWeatherAndForecast.js";
 import { getForecast } from "./getWeatherAndForecast.js";
 import { renderCurrentWeather } from "../components/currentWeather.js";
+import { renderHourlyForecast } from "../components/hourlyForecast.js";
 
 export const getGeoData = async () => {
   let city = cityInput.value.trim();
@@ -47,6 +48,7 @@ export const getGeoData = async () => {
     console.log(forecastData);
 
     renderCurrentWeather (weatherData, city);
+    renderHourlyForecast (forecastData);
 
     console.log(lat, lon);
 
