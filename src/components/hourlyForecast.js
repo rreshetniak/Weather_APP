@@ -33,7 +33,7 @@ export const renderHourlyForecast = (data) => {
     }
 
     const hourlyItem = document.createElement("div");
-    hourlyItem.classList.add(".hourly-item");
+    hourlyItem.classList.add("hourly-item");
     hourlyItem.innerHTML = `
 
       <p class="hour">${dayLabel}</p>
@@ -42,7 +42,7 @@ export const renderHourlyForecast = (data) => {
         src="https://openweathermap.org/img/wn/${icon}.png"
         alt="Weather"
       />
-      <p class="temp">${temp} °C</p>
+      <p class="temp">${temp}°C</p>
     `;
     hourlyForecast.append(hourlyItem);
   });
