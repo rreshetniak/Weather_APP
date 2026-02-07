@@ -1,9 +1,16 @@
+import { clearError } from "./error.js";
 import { cityInput } from "./inputForm.js";
 
 const recentCitiesList = document.getElementById('recent-cities-list');
 
 document.addEventListener('click', (event) => {
-  if (event.target !== cityInput && event.target !== recentCitiesList) {
+  clearError();
+  if(!recentCitiesList || !cityInput) {
+    return;
+  }
+  const target = event.target;
+
+  if(!cityInput.contains(target) && !recentCitiesList.contains(target)) {
     recentCitiesList.style.display = "none";
   }
 });

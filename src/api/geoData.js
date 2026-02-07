@@ -16,6 +16,7 @@ export const getGeoData = async () => {
   if (!city) {
     return;
   }
+  
   if (!isLatinOnly(city)) {
     showError('Check the cities Name');
     return;
